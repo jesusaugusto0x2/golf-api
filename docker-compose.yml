@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    container_name: golf-api-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - golf-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: golf-api-nginx
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - golf-network
+
+  db:
+    image: mysql:8.0
+    container_name: golf-api-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: golf_api
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: secret
+      MYSQL_USER: golf_user
+    ports:
+      - "33060:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - golf-network
+
+networks:
+  golf-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
