@@ -13,14 +13,12 @@ class RegisterUser
 
     public function execute(array $data): User
     {
-        // Validar que el email no exista
         $existingUser = $this->userRepository->findByEmail($data['email']);
         
         if ($existingUser) {
             throw new \Exception('Email already registered');
         }
 
-        // Crear el usuario
         return $this->userRepository->create($data);
     }
 }
