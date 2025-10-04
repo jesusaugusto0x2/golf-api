@@ -20,10 +20,16 @@ class Ad extends Model
         'condition',
         'description',
         'ends_at',
+        'ai_valuation',
+        'estimated_market_price',
     ];
 
     protected $casts = [
         'ends_at' => 'datetime',
+    ];
+
+    protected $hidden = [
+        'deleted_at',
     ];
 
     public function user()

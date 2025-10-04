@@ -16,6 +16,8 @@ class AdResource extends JsonResource
             'condition' => $this->condition,
             'description' => $this->description,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'ai_valuation' => $this->ai_valuation,
+            'estimated_market_price' => (float) $this->estimated_market_price,
             'user' => [
                 'id' => $this->user->id,
                 'name' => $this->user->name,
