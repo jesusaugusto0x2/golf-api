@@ -31,7 +31,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             AdRepositoryInterface::class,
             EloquentAdRepository::class,
-        );  
+        );
     }
 
     public function boot(): void

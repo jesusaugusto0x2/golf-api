@@ -19,3 +19,5 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/ads', [AdController::class, 'store']);
 });
+
+Route::get('/ads', [AdController::class, 'list']);
