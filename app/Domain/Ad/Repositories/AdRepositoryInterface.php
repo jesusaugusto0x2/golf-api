@@ -11,4 +11,8 @@ interface AdRepositoryInterface
     public function create(array $data): Ad;
 
     public function list(array $params): Collection|LengthAwarePaginator;
+
+    public function delete(int $adId): void;
+
+    public function findById(int $id): ?Ad;
 }

@@ -50,4 +50,14 @@ class EloquentAdRepository implements AdRepositoryInterface
 
         return $query->paginate($params['per_page']);
     }
+
+    public function delete(int $id): void
+    {
+        Ad::destroy($id);
+    }
+
+    public function findById(int $id): ?Ad
+    {
+        return Ad::find($id);
+    }
 }
