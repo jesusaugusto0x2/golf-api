@@ -16,9 +16,8 @@ class EloquentAdRepository implements AdRepositoryInterface
 
     public function list(array $params): Collection|LengthAwarePaginator
     {
-        $query = Ad::query();
+        $query = Ad::query()->with('user', 'category');
         
-        // Check show_all parameter
         if (isset($params['show_all']) && $params['show_all'] === true) {
             $query->orderBy('price', 'desc');
         } else {

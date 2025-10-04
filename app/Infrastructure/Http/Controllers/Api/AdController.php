@@ -10,6 +10,9 @@ use App\Application\UseCases\Ad\ListAds;
 use App\Infrastructure\Http\Requests\CreateAdRequest;
 use App\Infrastructure\Http\Requests\ListAdsRequest;
 
+// Resources
+use App\Infrastructure\Http\Resources\AdResource;
+
 // Responses
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,7 +54,7 @@ class AdController extends Controller
         try {
             $ads = $this->listAds->execute($request->getFilterParams());
 
-            return response()->json($ads, Response::HTTP_OK);
+            return AdResource::collection($ads)->response();
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Ad listing failed',

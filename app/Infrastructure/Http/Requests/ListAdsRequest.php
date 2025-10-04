@@ -14,7 +14,6 @@ class ListAdsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // Price range
             'price_min' => ['nullable', 'numeric', 'min:0'],
             'price_max' => ['nullable', 'numeric', 'min:0', 'gte:price_min'],
             'category_id' => ['nullable', 'integer', 'exists:categories,id'],
