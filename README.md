@@ -38,7 +38,7 @@ DB_USERNAME=golf_user
 DB_PASSWORD=secret
 
 # Gemini
-GEMINI_API_KEY=AIzaSyAcIQzdyj8cmZNyIXpBGWgPrJgXL16495g
+GEMINI_API_KEY=<your_gemini_api_key>
 ```
 
 **Prerequisites:** Docker & Docker Compose installed
