@@ -24,10 +24,8 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 RUN chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
-# Cambio importante: usar puerto 8000 para HTTP
 EXPOSE 8000
 
-# Usar artisan serve en vez de php-fpm
 CMD php artisan config:cache && \
     php artisan route:cache && \
     php artisan migrate --force && \
