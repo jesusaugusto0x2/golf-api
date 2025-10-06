@@ -31,7 +31,6 @@ CMD php artisan config:clear && \
     php artisan cache:clear && \
     php artisan route:clear && \
     php artisan view:clear && \
-    php artisan vendor:publish --provider="Laravel\\Sanctum\\SanctumServiceProvider" --force && \
     php artisan vendor:publish --provider="Google\\GeminiLaravel\\GeminiServiceProvider" --tag="config" --force && \
     php artisan migrate:fresh --seed --force && \
     php artisan optimize && \
