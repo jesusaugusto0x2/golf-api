@@ -27,4 +27,11 @@ RUN chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 ENV PORT=8000
 EXPOSE $PORT
 
-CMD php artisan migrate --force && php artisan optimize && php artisan serve --host=0.0.0.0 --port=${PORT}
+CMD php artisan config:clear && \
+    php artisan cache:clear && \
+    php artisan route:clear && \
+    php artisan view:clear && \
+    php artisan migrate --force && \
+    php artisan db:seed --force && \
+    php artisan optimize && \
+    php artisan serve --host=0.0.0.0 --port=${PORT}
